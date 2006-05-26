@@ -1,0 +1,24 @@
+
+
+       0 001001111 000111
+       ^  ^         ^
+       |  |          \-- exponent
+       |   \------------ mantissa
+        \--------------- sign
+
+
+
+     1
+    11      Take the mantissa:
+     1           001001111
+   11111
+
+p
+d30
+    222
+   2   2    Expone by the exponent
+      2          000111 =
+   22222
+
+p
+d5

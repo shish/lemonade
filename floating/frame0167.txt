@@ -1,0 +1,24 @@
+
+
+       0 001001111 000111
+       ^  ^         ^
+       |  |          \-- exponent
+       |   \------------ mantissa
+        \--------------- sign
+
+
+    333
+   3   3    Add the digits
+      3          1 + 2 + 16 + 1/2 + 1/4 = 19.75
+   3   3
+    333
+
+p
+d30
+    44      Note the sign:
+   4 4           0 = positive
+   4444          1 = negative
+     4
+
+p
+d50

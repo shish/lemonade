@@ -1,0 +1,24 @@
+
+   ####      #   #
+   #   #      # #      _______   __     __   _______   _______    __     __
+   ####        #      / ______| |  |   |  | |__   __| / ______|  |  |   |  |
+   #   #       #      | |_____  |  |___|  |    | |    | |_____   |  |___|  |
+   ####        #      \______ \ |   ___   |    | |    \______ \  |   ___   |
+  _______   _______         | | |  |   |  |    | |          | |  |  |   |  |
+ |_______| |_______|   _____/ | |  |   |  |  __| |__   _____/ |  |  |   |  |
+                      |______/  |__|   |__| |_______| |______/   |__|   |__|
+
+
+                       *** http://shish.is-a-geek.net/ ***
+
+
+     This text is only really here to fill up space -- I managed to get
+     the engine down to 346 bytes and the data file to 1521, total 1867
+     which left me with 181 free until I hit the 2048 limit...
+
+     Thanks for the Perl tips, Minase <3
+
+     Space is surprisingly hard to fill ... 2048 bytes ... now!
+
+p
+d200

@@ -1,0 +1,23 @@
+
+
+
+              FFFFF L      OOO    A   TTTTT IIIII N   N  GGG
+              F     L     O   O  A A    T     I   NN  N G   G
+              F     L     O   O A   A   T     I   N N N G
+              FFF   L     O   O A   A   T     I   N  NN G
+              F     L     O   O AAAAA   T     I   N   N G  GGG
+              F     L     O   O A   A   T     I   N   N G   G
+              F     LLLLL  OOO  A   A   T   IIIII N   N  GGG
+
+
+                      PPPP   OOO  IIIII N   N TTTTT  SSSS
+                      P   P O   O   I   NN  N   T   S
+                      P   P O   O   I   N N N   T   S
+                      PPPP  O   O   I   N  NN   T    SSS
+                      P     O   O   I   N   N   T       S
+                      P     O   O   I   N   N   T       S
+                      P      OOO  IIIII N   N   T   SSSS
+
+si
+d20
+so
