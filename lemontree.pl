@@ -139,9 +139,9 @@ if($data =~ /\ns(.)/) {
 			for($i=$s;$i!=$e;$i+=$m){
 				$j=0;
 				for(@l){
-					print substr($_,(($i+$j++)>0?($i+$j)**2:0),-1)."\n"
+					print substr($_,$i+$j++>0?($i+$j)**2:0,-1)."\n"
 				}
-				select($u,$u,$u,.1);
+				select$u,$u,$u,.1;
 				print$c
 			}
 		}
