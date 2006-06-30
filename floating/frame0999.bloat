@@ -11,5 +11,14 @@
 
                        *** http://shish.is-a-geek.net/ ***
 
+
+     This text is only really here to fill up space -- I managed to get
+     the engine down to 346 bytes and the data file to 1521, total 1867
+     which left me with 181 free until I hit the 2048 limit...
+
+     Thanks for the Perl tips, Minase <3
+
+     Space is surprisingly hard to fill ... 2048 bytes ... now!
+
 p
 d200

@@ -22,6 +22,8 @@
 #    lines also saves ~50 bytes
 # 2006/01/31: Saw I could save 6 bytes by replacing @s=blah;foreach(@s)
 #    with foreach(blah)... How the fsck did I miss that :-/
+# 2006/06/30: Posted in a slashdot discussion, Michael Woodhams replied
+#    with suggestions to cut a few more bytes off
 #
 
 # Commands are pretty self enclosed; you can cut out any you don't use.
@@ -34,37 +36,78 @@ use strict;
 use warnings;
 
 my $inputfile = $ARGV[0];
-if(!-f $inputfile) {
-	die("Error opening $inputfile: $!\n");
-}
-my ($outputfile) = $inputfile =~ /^(.*)\.gz$/;
-$outputfile .= ".pl";
-
-# scan the raw data file to find out what commands are used
-open(DATA, "zcat $inputfile|") or die $!;
 my $data = "";
-while(<DATA>) {
-	next if /^ /;
-	next if /^$/;
-	$data .= $_;
-}
-close(DATA);
-
-# load the compressed data file
-open(ZDATA, "<$inputfile") or die $!;
-binmode(ZDATA);
+my $outputfile = undef;
 my $zdata = "";
-while(<ZDATA>) {
-	$zdata .= $_;
+
+if(-f $inputfile) {
+	print "Opening pre-prepared data file...";
+	# scan the raw data file to find out what commands are used
+	open(DATA, "zcat $inputfile|") or die $!;
+	while(<DATA>) {
+		next if /^ /;
+		next if /^$/;
+		$data .= $_;
+	}
+	close(DATA);
+	print "ok\n";
+
+	print "Reading raw data...";
+	# load the compressed data file
+	open(ZDATA, "<$inputfile") or die $!;
+	binmode(ZDATA);
+	while(<ZDATA>) {
+		$zdata .= $_;
+	}
+	close(ZDATA);
+	print "ok\n";
+
+	($outputfile) = $inputfile =~ /^(.*)\.gz$/;
+	$outputfile .= ".pl";
+	print "in:$inputfile, out:$outputfile\n";
 }
-close(ZDATA);
+elsif(-d $inputfile) {
+	print "reading frames...";
+	foreach(glob("$inputfile/*")) {
+		print ".($_)\n";
+		open(DATA, "<$_") or die $!;
+		while(<DATA>) {
+			next if /^ /;
+			next if /^$/;
+			$data .= $_;
+		}
+		close(DATA);
+		$data .= "\nc\n";
+	}
+	print "ok\n";
+
+	print "compressing...";
+	open(TMP, "| 7z a -tgzip -mx=9 -mpass=4 -mfb=255 -si tmp.gz");
+	print TMP $data;
+	close(TMP);
+	print "ok\n";
+
+	print "reading data...";
+	open(ZDATA, "<tmp.gz");
+	binmode(ZDATA);
+	while(<ZDATA>) {
+		$zdata .= $_;
+	}
+	close(ZDATA);
+	print "ok\n";
+
+	($outputfile) = $inputfile =~ /^(.*)\/?$/;
+	$outputfile .= ".pl";
+	print "in:$inputfile, out:$outputfile\n";
+}
+
 
 
 
 # XXX: "tail -c +N" shows all but the first N bytes of the file --
 # set this to whatever size this file is, and account for a newline
 # after the END and before the data
-my $output .= q($c=`clear`;foreach(`tail -c+SIZ $0|zcat`){);
+my $output .= q($c=`clear`;for(`tail -c+SIZ $0|zcat`){);
 
 # print buffer
 if($data =~ /\np/) {
@@ -89,16 +132,16 @@ if($data =~ /\nd(.+)/) {
 if($data =~ /\ns(.)/) {
 	$output .= q(
 		elsif(/^s(.)/){
-			$s=10;$e=-30;$m=-1;
+			$s=9;$e=-30;$m=-1;
 			if('o'eq$1){
-				$s=-30;$e=10;$m=1
+				$s=-30;$e=9;$m=1
 			}
 			for($i=$s;$i!=$e;$i+=$m){
 				$j=0;
-				foreach(@l){
+				for(@l){
 					print substr($_,(($i+$j++)>0?($i+$j)**2:0),-1)."\n"
 				}
-				select($u,$u,$u,0.1);
+				select($u,$u,$u,.1);
 				print$c
 			}
 		}
