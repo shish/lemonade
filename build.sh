@@ -13,6 +13,7 @@ else
 
 	echo -n "building header..."
 	perl lemontree.pl $1.gz
+	chmod +x $1.pl
 	echo "ok"
 
 	echo -n "tidying up..."
